@@ -1,12 +1,12 @@
 # Lazy Load [![NPM version](https://badge.fury.io/js/lazy-load-singleton.png)](https://www.npmjs.com/package/lazy-load-singleton)
 
-Lazy load singleton is a small helper library that transforms any class to singleton with lazy initialisation.
+Lazy load singleton is a small helper library that transforms any class to singleton with lazy initialization.
 
 ## Installation
 ```bash
-npm i  --save  lazy-load-singleton
+npm i --save lazy-load-singleton
 # or
-yarn add  lazy-load-singleton
+yarn add lazy-load-singleton
 ```
 
 ## Usage
@@ -14,9 +14,9 @@ Common use-case is to create singleton from module when you cannot initialize it
 
 ### Singleton
 ```js
-import LazySingleton from  'lazy-load-singleton';
+import LazySingleton from 'lazy-load-singleton';
 
-class  DB {
+class DB {
 	constructor(connectionString) {}
 	performQuery(query, values) {}
 }
