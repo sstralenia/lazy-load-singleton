@@ -2,11 +2,17 @@ import { test, expect, beforeEach, afterEach } from '@jest/globals'
 import lazySingleton from '../src/index';
 
 class TestClass {
+  #privateGreeting = 'bougour:';
+
   constructor(public greeting: string) {
   } 
 
   sayHello() {
     return 'hello:' + this.greeting;
+  }
+
+  sayPrivateHello() {
+    return this.#privateGreeting + this.greeting;
   }
 }
 
@@ -48,4 +54,6 @@ test('Sigleton works good after initialization', () => {
   expect(TestSingletone.greeting).toBe('test');
   expect(instance.sayHello()).toBe('hello:test');
   expect(TestSingletone.sayHello()).toBe('hello:test');
+  expect(instance.sayPrivateHello()).toBe('bougour:test');
+  expect(TestSingletone.sayPrivateHello()).toBe('bougour:test');
 });

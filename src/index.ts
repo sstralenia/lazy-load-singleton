@@ -22,8 +22,8 @@ function createSingleton<Type extends object>(
   return new Proxy(
     {},
     {
-      get(_target, prop, receiver) {
-        if (prop === "init") {
+      get(_target, prop, _receiver) {
+        if (prop === 'init') {
           return init;
         }
 
@@ -31,7 +31,15 @@ function createSingleton<Type extends object>(
           throw new Error("Singletone is not initialized");
         }
 
-        return Reflect.get(instance, prop, receiver);
+        // Reflect.get(instance, prop, _receiver) does not work here
+        // for classes with private(#var) properties
+        const propValue = instance[prop as keyof Type] as unknown;
+
+        if (typeof propValue === 'function') {
+          return propValue.bind(instance);
+        }
+
+        return propValue;
       },
     }
   ) as Singleton<Type>;
