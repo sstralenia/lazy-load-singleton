@@ -23,7 +23,7 @@ function createSingleton<Type extends object>(
     {},
     {
       get(_target, prop, _receiver) {
-        if (prop === 'init') {
+        if (prop === "init") {
           return init;
         }
 
@@ -35,7 +35,7 @@ function createSingleton<Type extends object>(
         // for classes with private(#var) properties
         const propValue = instance[prop as keyof Type] as unknown;
 
-        if (typeof propValue === 'function') {
+        if (typeof propValue === "function") {
           return propValue.bind(instance);
         }
 
