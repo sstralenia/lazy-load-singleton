@@ -6,9 +6,7 @@ type ClassType<T> = new (...args: any[]) => T;
 
 type Singleton<T> = T & InitFunction<T>;
 
-function createSingleton<Type extends object>(
-  Class: ClassType<Type>
-): Singleton<Type> {
+function createSingleton<Type>(Class: ClassType<Type>): Singleton<Type> {
   let instance: Type;
 
   function init(...args: any[]): Type {
@@ -33,6 +31,7 @@ function createSingleton<Type extends object>(
 
         // Reflect.get(instance, prop, _receiver) does not work here
         // for classes with private(#var) properties
+        // Work around:
         const propValue = instance[prop as keyof Type] as unknown;
 
         if (typeof propValue === "function") {
