@@ -6,9 +6,7 @@ type ClassType<T> = new (...args: any[]) => T;
 
 type Singleton<T> = T & InitFunction<T>;
 
-function createSingleton<Type extends object>(
-  Class: ClassType<Type>
-): Singleton<Type> {
+function createSingleton<Type>(Class: ClassType<Type>): Singleton<Type> {
   let instance: Type;
 
   function init(...args: any[]): Type {
