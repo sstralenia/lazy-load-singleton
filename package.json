@@ -1,6 +1,6 @@
 {
   "name": "lazy-load-singleton",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create singleton with lazy initialization from any class",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
